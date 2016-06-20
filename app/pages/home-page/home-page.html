@@ -1,0 +1,16 @@
+<ion-navbar *navbar>
+  <ion-title>Повідомлення</ion-title>
+</ion-navbar>
+
+<ion-content padding class="page1">
+  <p *ngIf="!_connected">Підключення до мережі відсутнє. Спробуйте пізніше.</p>
+  <p *ngIf="_connected && !_serverAvailable">Сервер недоступний. Спробуйте пізніше.</p>
+
+  <p *ngIf="_connected && _serverAvailable && _messages.length < 1">Повідомлень немає.</p>
+
+  <div *ngIf="_connected && _serverAvailable && _messages.length > 0">
+    <ion-card *ngFor="let message of _messages" padding>
+      <p>{{message.title}}</p>
+    </ion-card>
+  </div>
+</ion-content>
