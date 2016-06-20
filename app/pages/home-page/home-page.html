@@ -6,11 +6,14 @@
   <p *ngIf="!_connected">Підключення до мережі відсутнє. Спробуйте пізніше.</p>
   <p *ngIf="_connected && !_serverAvailable">Сервер недоступний. Спробуйте пізніше.</p>
 
+  <ion-refresher *ngIf="_connected" (ionRefresh)="refresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+
   <p *ngIf="_connected && _serverAvailable && _messages.length < 1">Повідомлень немає.</p>
 
-  <div *ngIf="_connected && _serverAvailable && _messages.length > 0">
-    <ion-card *ngFor="let message of _messages" padding>
-      <p>{{message.title}}</p>
-    </ion-card>
-  </div>
+  <ion-card *ngFor="let message of _messages" padding>
+    <p>{{message.title}}</p>
+  </ion-card>
 </ion-content>
